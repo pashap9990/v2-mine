@@ -26,7 +26,7 @@ var spicyRawGenesisConfig []byte
 
 var SpicyGenesisConfig = mustParseGenesisConfigFromJson(spicyRawGenesisConfig)
 
-//go:embed embedded/chiliz.json
-var chilizRawGenesisConfig []byte
+//go:embed embedded/mine-chain.json
+var mineChainRawGenesisConfig []byte
 
-var ChilizMainnetGenesisConfig = mustParseGenesisConfigFromJson(chilizRawGenesisConfig)
+var MineChainMainnetGenesisConfig = mustParseGenesisConfigFromJson(mineChainRawGenesisConfig)

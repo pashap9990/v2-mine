@@ -87,9 +87,9 @@ devtools:
 
 #? help: Build docker image
 docker:
-	docker build --pull -t chilizchain/ccv2-geth:latest -f Dockerfile .
+	docker build --pull -t minechain/ccv2-geth:latest -f Dockerfile .
 docker.login:
-	aws ecr get-login-password --profile=chiliz-integration --region=eu-west-3 | docker login --username AWS --password-stdin $(AWS_ACCOUNT)
+	aws ecr get-login-password --profile=mine-chain-integration --region=eu-west-3 | docker login --username AWS --password-stdin $(AWS_ACCOUNT)
 
 
 docker.build_images:

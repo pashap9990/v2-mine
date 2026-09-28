@@ -211,19 +211,19 @@ var (
 		Value:    11500000,
 		Category: flags.DevCategory,
 	}
-	ChilizMainnetFlag = &cli.BoolFlag{
-		Name:     "chiliz",
-		Usage:    "Chiliz Chain 2 network: pre-configured proof-of-stake network",
+	MineChainMainnetFlag = &cli.BoolFlag{
+		Name:     "mine-chain",
+		Usage:    "Mine-Chain 2 network: pre-configured proof-of-stake network",
 		Category: flags.EthCategory,
 	}
-	ChilizTestnetFlag = &cli.BoolFlag{
+	MineChainTestnetFlag = &cli.BoolFlag{
 		Name:     "scoville",
-		Usage:    "Chiliz Scoville testnet network",
+		Usage:    "Mine-Chain Scoville testnet network",
 		Category: flags.EthCategory,
 	}
-	ChilizSpicyFlag = &cli.BoolFlag{
+	MineChainSpicyFlag = &cli.BoolFlag{
 		Name:     "spicy",
-		Usage:    "Chiliz Spicy testnet network",
+		Usage:    "Mine-Chain Spicy testnet network",
 		Category: flags.EthCategory,
 	}
 
@@ -1415,10 +1415,10 @@ Please note that --` + MetricsHTTPFlag.Name + ` must be set to start the server.
 var (
 	// TestnetFlags is the flag group of all built-in supported testnets.
 	TestnetFlags = []cli.Flag{
-		ChilizSpicyFlag,
+		MineChainSpicyFlag,
 	}
 	// NetworkFlags is the flag group of all built-in supported networks.
-	NetworkFlags = append([]cli.Flag{ChilizMainnetFlag}, TestnetFlags...)
+	NetworkFlags = append([]cli.Flag{MineChainMainnetFlag}, TestnetFlags...)
 
 	// DatabaseFlags is the flag group of all database flags.
 	DatabaseFlags = []cli.Flag{
@@ -1495,12 +1495,12 @@ func setBootstrapNodes(ctx *cli.Context, cfg *p2p.Config) {
 	switch {
 	case ctx.IsSet(BootnodesFlag.Name):
 		urls = SplitAndTrim(ctx.String(BootnodesFlag.Name))
-	case ctx.Bool(ChilizMainnetFlag.Name):
-		urls = params.ChilizMainnetBootnodes
-	case ctx.Bool(ChilizTestnetFlag.Name):
-		urls = params.ChilizScovilleBootnodes
-	case ctx.Bool(ChilizSpicyFlag.Name):
-		urls = params.ChilizSpicyBootnodes
+	case ctx.Bool(MineChainMainnetFlag.Name):
+		urls = params.MineChainMainnetBootnodes
+	case ctx.Bool(MineChainTestnetFlag.Name):
+		urls = params.MineChainScovilleBootnodes
+	case ctx.Bool(MineChainSpicyFlag.Name):
+		urls = params.MineChainSpicyBootnodes
 	case cfg.BootstrapNodes != nil:
 		return // already set, don't apply defaults.
 	}
@@ -1942,12 +1942,12 @@ func SetDataDir(ctx *cli.Context, cfg *node.Config) {
 	switch {
 	case ctx.IsSet(DataDirFlag.Name):
 		cfg.DataDir = ctx.String(DataDirFlag.Name)
-	case ctx.Bool(ChilizMainnetFlag.Name) && cfg.DataDir == node.DefaultDataDir():
-		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "chiliz")
-	case ctx.Bool(ChilizTestnetFlag.Name) && cfg.DataDir == node.DefaultDataDir():
-		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "chiliz")
-	case ctx.Bool(ChilizSpicyFlag.Name) && cfg.DataDir == node.DefaultDataDir():
-		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "chiliz")
+	case ctx.Bool(MineChainMainnetFlag.Name) && cfg.DataDir == node.DefaultDataDir():
+		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "mine-chain")
+	case ctx.Bool(MineChainTestnetFlag.Name) && cfg.DataDir == node.DefaultDataDir():
+		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "mine-chain")
+	case ctx.Bool(MineChainSpicyFlag.Name) && cfg.DataDir == node.DefaultDataDir():
+		cfg.DataDir = filepath.Join(node.DefaultDataDir(), "mine-chain")
 	case ctx.Bool(DeveloperFlag.Name):
 		cfg.DataDir = "" // unless explicitly requested, use memory databases
 	}
@@ -2116,7 +2116,7 @@ func setRequiredBlocks(ctx *cli.Context, cfg *ethconfig.Config) {
 // SetEthConfig applies eth-related command line flags to the config.
 func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *ethconfig.Config) {
 	// Avoid conflicting network flags, don't allow network id override on preset networks
-	flags.CheckExclusive(ctx, BSCMainnetFlag, DeveloperFlag, ChilizMainnetFlag, ChilizTestnetFlag, ChilizSpicyFlag, NetworkIdFlag, OverrideGenesisFlag)
+	flags.CheckExclusive(ctx, BSCMainnetFlag, DeveloperFlag, MineChainMainnetFlag, MineChainTestnetFlag, MineChainSpicyFlag, NetworkIdFlag, OverrideGenesisFlag)
 	flags.CheckExclusive(ctx, DeveloperFlag, ExternalSignerFlag) // Can't use both ephemeral unlocked and external signer
 
 	// Set configurations from CLI flags
@@ -2380,15 +2380,15 @@ func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *ethconfig.Config) {
 		}
 		cfg.Genesis = core.DefaultChapelGenesisBlock()
 		SetDNSDiscoveryDefaults(cfg, params.ChapelGenesisHash)
-	case ctx.Bool(ChilizMainnetFlag.Name):
+	case ctx.Bool(MineChainMainnetFlag.Name):
 		if !ctx.IsSet(NetworkIdFlag.Name) {
 			cfg.NetworkId = 88888
 		}
-	case ctx.Bool(ChilizTestnetFlag.Name):
+	case ctx.Bool(MineChainTestnetFlag.Name):
 		if !ctx.IsSet(NetworkIdFlag.Name) {
 			cfg.NetworkId = 88880
 		}
-	case ctx.Bool(ChilizSpicyFlag.Name):
+	case ctx.Bool(MineChainSpicyFlag.Name):
 		if !ctx.IsSet(NetworkIdFlag.Name) {
 			cfg.NetworkId = 88882
 		}
@@ -2913,12 +2913,12 @@ func MakeGenesis(ctx *cli.Context) *core.Genesis {
 		genesis = core.DefaultBSCGenesisBlock()
 	case ctx.Bool(ChapelFlag.Name):
 		genesis = core.DefaultChapelGenesisBlock()
-	case ctx.Bool(ChilizMainnetFlag.Name):
-		genesis = core.DefaultChilizMainnetGenesisBlock()
-	case ctx.Bool(ChilizTestnetFlag.Name):
-		genesis = core.DefaultChilizTestnetGenesisBlock()
-	case ctx.Bool(ChilizSpicyFlag.Name):
-		genesis = core.DefaultChilizSpicyGenesisBlock()
+	case ctx.Bool(MineChainMainnetFlag.Name):
+		genesis = core.DefaultMineChainMainnetGenesisBlock()
+	case ctx.Bool(MineChainTestnetFlag.Name):
+		genesis = core.DefaultMineChainTestnetGenesisBlock()
+	case ctx.Bool(MineChainSpicyFlag.Name):
+		genesis = core.DefaultMineChainSpicyGenesisBlock()
 	case ctx.Bool(DeveloperFlag.Name):
 		Fatalf("Developer chains are ephemeral")
 	}

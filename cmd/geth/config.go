@@ -146,19 +146,19 @@ func defaultNodeConfig() node.Config {
 }
 
 func readGenesisConfig(ctx *cli.Context) *core.Genesis {
-	// Chiliz Scoville just return already stored genesis config
-	if ctx.Bool(utils.ChilizTestnetFlag.Name) {
+	// Mine-Chain Scoville just return already stored genesis config
+	if ctx.Bool(utils.MineChainTestnetFlag.Name) {
 		return config.ScovilleGenesisConfig
 	}
-	// Chiliz Spicy just return already stored genesis config
-	if ctx.Bool(utils.ChilizSpicyFlag.Name) {
+	// Mine-Chain Spicy just return already stored genesis config
+	if ctx.Bool(utils.MineChainSpicyFlag.Name) {
 		return config.SpicyGenesisConfig
 	}
-	// Chiliz Mainnet just return already stored genesis config
-	if ctx.Bool(utils.ChilizMainnetFlag.Name) {
-		return config.ChilizMainnetGenesisConfig
+	// Mine-Chain Mainnet just return already stored genesis config
+	if ctx.Bool(utils.MineChainMainnetFlag.Name) {
+		return config.MineChainMainnetGenesisConfig
 	}
-	// Genesis is optional: when no genesis JSON and no Chiliz network flag is
+	// Genesis is optional: when no genesis JSON and no Mine-Chain network flag is
 	// provided, fall back to the stored DB config (or the default genesis on an
 	// empty DB). This lets commands that don't need a genesis (account, console,
 	// db, ...) run without one.
@@ -200,7 +200,7 @@ func loadBaseConfig(ctx *cli.Context) gethConfig {
 	}
 
 	// Only override the genesis when one is explicitly provided (via a genesis
-	// JSON or a Chiliz network flag); otherwise keep what config.toml supplied.
+	// JSON or a Mine-Chain network flag); otherwise keep what config.toml supplied.
 	if genesis := readGenesisConfig(ctx); genesis != nil {
 		cfg.Eth.Genesis = genesis
 	}

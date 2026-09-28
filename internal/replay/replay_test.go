@@ -28,7 +28,7 @@ import (
 // TestReplayFixtures re-executes every committed fixture and requires it to reproduce the
 // gas the chain charged. Each fixture's comment says which invariant it stands for; the
 // COR-193 ones are the tripwire for the DeployerProxy hook-dispatch warming in
-// core/vm/chiliz.go, and fail by exactly +2500 if it is dropped.
+// core/vm/mine-chain.go, and fail by exactly +2500 if it is dropped.
 //
 // To add a block, point cmd/replaycheck at it with --save-fixture internal/replay/testdata;
 // no code change is needed here.

@@ -110,7 +110,7 @@ func TestExtractSnake8ParentTimestamp(t *testing.T) {
 }
 
 // snake8PreLubanConfig mirrors snake8TestConfig but leaves Luban inactive, which
-// is the layout Chiliz mainnet/Spicy actually run (no lubanBlock in the embedded
+// is the layout Mine-Chain mainnet/Spicy actually run (no lubanBlock in the embedded
 // genesis). On this path epoch blocks carry 20-byte validator entries with no
 // count byte, and no vote attestation is ever appended.
 func snake8PreLubanConfig() *params.ChainConfig {
@@ -121,7 +121,7 @@ func snake8PreLubanConfig() *params.ChainConfig {
 
 // TestExtractSnake8ParentTimestampPreLubanEpochBlock exercises the
 // validator-skipping path on a pre-Luban epoch block — the one that is actually
-// live on Chiliz. snake8FreqDataOffset must walk the 20-byte validator entries
+// live on Mine-Chain. snake8FreqDataOffset must walk the 20-byte validator entries
 // (located via getValidatorBytesFromHeader, which stops at the VFQ prefix) and
 // land exactly on the frequency block.
 func TestExtractSnake8ParentTimestampPreLubanEpochBlock(t *testing.T) {

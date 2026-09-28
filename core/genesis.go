@@ -707,15 +707,15 @@ func DefaultChapelGenesisBlock() *Genesis {
 	}
 }
 
-func DefaultChilizMainnetGenesisBlock() *Genesis {
+func DefaultMineChainMainnetGenesisBlock() *Genesis {
 	return nil
 }
 
-func DefaultChilizTestnetGenesisBlock() *Genesis {
+func DefaultMineChainTestnetGenesisBlock() *Genesis {
 	return nil
 }
 
-func DefaultChilizSpicyGenesisBlock() *Genesis {
+func DefaultMineChainSpicyGenesisBlock() *Genesis {
 	return nil
 }
 

@@ -1,6 +1,6 @@
 {
- "comment": "COR-193 regression: the governance execution that runs a runtime upgrade of the DeployerProxy 0x...7005 on mainnet. Fails by +2500 if EVM.Call stops warming the DeployerProxy when it dispatches an EVM hook (see warmDeployerProxyOnHookDispatch in core/vm/chiliz.go).",
- "genesis": "chiliz",
+ "comment": "COR-193 regression: the governance execution that runs a runtime upgrade of the DeployerProxy 0x...7005 on mainnet. Fails by +2500 if EVM.Call stops warming the DeployerProxy when it dispatches an EVM hook (see warmDeployerProxyOnHookDispatch in core/vm/mine-chain.go).",
+ "genesis": "mine-chain",
  "block": {
   "number": 31384697,
   "hash": "0x5bea983a3fe52f92ffeed9a73ca3286aebb1a804926ac216562ce3aa88df1664",

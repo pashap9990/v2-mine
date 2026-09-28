@@ -1,8 +1,8 @@
 # Automated upstream BSC sync (COR-37)
 
-Chiliz Chain (CC2) is a fork of [bnb-chain/bsc](https://github.com/bnb-chain/bsc).
+Mine-Chain (CC2) is a fork of [bnb-chain/bsc](https://github.com/bnb-chain/bsc).
 We periodically merge upstream BSC release tags to pick up bug fixes,
-performance work, and protocol upgrades while preserving Chiliz-specific
+performance work, and protocol upgrades while preserving Mine-Chain-specific
 customisations (see [`CLAUDE.md`](../CLAUDE.md)).
 
 This used to be an entirely manual chore. The
@@ -50,7 +50,7 @@ Every Monday at 06:00 UTC (and on manual dispatch):
 6. **Draft PR** — once all tags are processed, a draft PR is opened against
    `develop` with the impact summary, the tag list, and a conflict-resolution
    table.
-7. **Slack** — a message is posted to `#bu-chiliz-core-squad` with the tags
+7. **Slack** — a message is posted to `#bu-mine-chain-core-squad` with the tags
    synced, the 🟢/🟡/🔴 counts, a link to the PR, and — if any were detected —
    a major-release alert listing the versions that were **not** auto-merged.
 8. **Human review** — a teammate audits the resolutions (especially 🟡),
@@ -64,7 +64,7 @@ Every Monday at 06:00 UTC (and on manual dispatch):
 - Every resolution is **visible in the PR diff** — nothing is applied silently.
 - Low-confidence resolutions are **flagged inline** in the code.
 - `CLAUDE.md` is **maintained by the team**; resolution quality tracks how well
-  it documents Chiliz-specific logic. Keep its "Historical conflict patterns"
+  it documents Mine-Chain-specific logic. Keep its "Historical conflict patterns"
   log current after every sync.
 
 ## Configuration
@@ -72,7 +72,7 @@ Every Monday at 06:00 UTC (and on manual dispatch):
 | Kind | Name | Purpose |
 |------|------|---------|
 | Secret | `ANTHROPIC_API_KEY` | Enables the conflict-resolution agent. **When absent, clean merges still flow but conflicting tags are reported for manual merge instead of being auto-resolved.** |
-| Secret | `SLACK_WEBHOOK_URL` | Incoming webhook for `#bu-chiliz-core-squad`. If unset, the Slack step is skipped (non-fatal). |
+| Secret | `SLACK_WEBHOOK_URL` | Incoming webhook for `#bu-mine-chain-core-squad`. If unset, the Slack step is skipped (non-fatal). |
 | Variable | `BSC_SYNC_CLAUDE_MODEL` | Model the agent runs. Defaults to `claude-opus-4-8` (pinned for reproducible conflict resolution); set this variable to override. |
 
 State lives in [`.github/bsc-sync/last-synced-tag`](../.github/bsc-sync/last-synced-tag).
@@ -118,7 +118,7 @@ SKIP_AGENT=1 .github/scripts/bsc-sync/run-sync.sh v1.7.4 v1.7.5
 - The `genesis` submodule pointer is never touched (checkout uses
   `submodules: false`).
 - The merge strategy mirrors the documented manual method (tag by tag,
-  Chiliz customisations win). The squash-merge graft trick described in the
+  Mine-Chain customisations win). The squash-merge graft trick described in the
   team runbook is only needed for the *first* sync after a squash-merged
   history; once a real merge commit exists, later tags get correct
   merge-bases automatically.

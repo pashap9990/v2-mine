@@ -1,5 +1,5 @@
 You are writing a **Release Impact** report for a sync that merged one or
-more upstream **bnb-chain/bsc** release tags into **chiliz-chain** (Chiliz
+more upstream **bnb-chain/bsc** release tags into **mine-chain** (Mine-Chain
 Chain v2, "CC2"), a customised fork of BSC. You are running headless inside a
 GitHub Actions job, with no human to ask. The merge has already happened and
 is committed — your job is to explain, for a human reviewer, what this release
@@ -14,7 +14,7 @@ does to our code.
 ## Required reading
 
 Read `CLAUDE.md` at the repository root first. Its **Invariants** section
-lists the Chiliz-specific code and config that must never be lost to upstream
+lists the Mine-Chain-specific code and config that must never be lost to upstream
 (EVM hooks, Parlia tokenomics/inflation, the Pepper8/Pipe8/Snake8/Dragon8
 forks, gas & fee constants, chain config & fork schedules, tracing). Those are
 the areas a reviewer cares about most.
@@ -57,11 +57,11 @@ areas. Show what moved and how it was resolved:
 |------|---------|----------------|------------------------|-------|
 
 "Our value (after sync)" is what is in the tree now at HEAD. In Notes, say
-whether we kept the Chiliz value, adopted upstream's, or merged both — and why
+whether we kept the Mine-Chain value, adopted upstream's, or merged both — and why
 it matters. If the release changed no config/constants, write "None."
 
 ### Invariant impact ⚠️
-Explicitly call out anything upstream changed that *touches* a Chiliz
+Explicitly call out anything upstream changed that *touches* a Mine-Chain
 invariant (per CLAUDE.md) — even if it merged cleanly. For each: the file/area,
 what upstream did, and whether our customisation is still intact. If nothing
 touched an invariant, say so clearly — that itself is a useful all-clear.

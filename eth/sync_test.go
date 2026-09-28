@@ -88,7 +88,7 @@ func testSnapSyncDisabling(t *testing.T, ethVer uint, snapVer uint) {
 	// Wait a bit for the above handlers to start
 	time.Sleep(250 * time.Millisecond)
 
-	// Check that snap sync was disabled. Note: Chiliz/BSC set defaultMinSyncPeers
+	// Check that snap sync was disabled. Note: Mine-Chain/BSC set defaultMinSyncPeers
 	// to 1 (upstream go-ethereum uses 5), so the background chain syncer
 	// auto-starts a sync as soon as the single peer registers. Driving doSync
 	// manually here would race that background sync and return errBusy, so
@@ -176,7 +176,7 @@ func testChainSyncWithBlobs(t *testing.T, mode downloader.SyncMode, preCancunBlk
 		time.Sleep(100 * time.Millisecond)
 	}
 
-	// With defaultMinSyncPeers == 1 (Chiliz/BSC divergence from upstream's 5) the
+	// With defaultMinSyncPeers == 1 (Mine-Chain/BSC divergence from upstream's 5) the
 	// background chain syncer auto-starts the sync once the peer registers, so
 	// wait for it to finish instead of driving doSync manually (which would race
 	// it and return errBusy). See COR-39.

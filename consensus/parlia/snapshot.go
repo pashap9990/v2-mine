@@ -584,7 +584,7 @@ func (s *Snapshot) indexOfVal(validator common.Address) int {
 // turn-length sections; any Vote Attestation is inserted afterwards by Seal
 // (assembleVoteAttestation, just before the seal), so it sits *after* the
 // frequency data — this function therefore does not, and must not, skip over it.
-// Note that on networks where Luban is not active (e.g. Chiliz mainnet/Spicy) no
+// Note that on networks where Luban is not active (e.g. Mine-Chain mainnet/Spicy) no
 // vote attestation is ever produced, so the frequency block runs straight to the
 // seal.
 //

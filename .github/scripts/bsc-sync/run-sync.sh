@@ -263,7 +263,7 @@ done
 
 # --- release-impact report (prepended, so it leads the PR body) -------------
 # A one-shot agent pass over the whole merged range: what the release does,
-# which config/constants moved, and whether any Chiliz invariant was touched.
+# which config/constants moved, and whether any Mine-Chain invariant was touched.
 if [ "${#synced_tags[@]}" -gt 0 ]; then
   impact_md="$AGENT_REPORT_DIR/impact.md"
   rm -f "$impact_md"

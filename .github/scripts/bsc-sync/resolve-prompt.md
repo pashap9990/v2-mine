@@ -1,5 +1,5 @@
 You are resolving git merge conflicts produced while merging an upstream
-**bnb-chain/bsc** release tag into **chiliz-chain** (Chiliz Chain v2, "CC2"),
+**bnb-chain/bsc** release tag into **mine-chain** (Mine-Chain v2, "CC2"),
 a customised fork of BSC. You are running headless inside a GitHub Actions
 job. There is no human to ask — make the best decision you can and record
 your confidence honestly.
@@ -8,7 +8,7 @@ your confidence honestly.
 
 Before touching anything, read `CLAUDE.md` at the repository root. It is the
 authoritative description of this fork: the **Invariants** section lists
-Chiliz-specific code that must NEVER be lost to upstream, the
+Mine-Chain-specific code that must NEVER be lost to upstream, the
 **Safe-to-override** section lists areas where upstream almost always wins,
 and the **Grey areas** section lists changes that need human judgment. Treat
 those three sections as your decision policy.
@@ -26,7 +26,7 @@ For each conflicted file:
    - `git log --oneline -5 {{TAG}}` — what the upstream tag changed
    - `git show :1:<file>` / `:2:<file>` / `:3:<file>` — base / ours / theirs
 2. Decide the resolution using CLAUDE.md as policy:
-   - A Chiliz **invariant** is involved → keep the Chiliz behaviour while
+   - A Mine-Chain **invariant** is involved → keep the Mine-Chain behaviour while
      still integrating any unrelated upstream changes around it.
    - A **safe-to-override** area → take upstream.
    - Otherwise → integrate both sides as faithfully as you can.
@@ -65,7 +65,7 @@ with this shape (and nothing else in the file):
     {
       "file": "consensus/parlia/parlia.go",
       "confidence": "high",
-      "summary": "Kept Chiliz distributeIncoming branching; took upstream's gas accounting refactor around it."
+      "summary": "Kept Mine-Chain distributeIncoming branching; took upstream's gas accounting refactor around it."
     }
   ]
 }

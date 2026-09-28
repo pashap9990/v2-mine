@@ -22,8 +22,8 @@ You need:
 
 - Go installed (the repo's normal build requirements).
 - An RPC endpoint with the `debug` namespace enabled and enough history to reach the block
-  you care about. The public ones work: `https://rpc.chiliz.com` (mainnet, the default) and
-  `https://spicy-rpc.chiliz.com` (Spicy).
+  you care about. The public ones work: `https://rpc.mine-chain.com` (mainnet, the default) and
+  `https://spicy-rpc.mine-chain.com` (Spicy).
 
 ## Step 1 — build it
 
@@ -112,7 +112,7 @@ mainnet sweep is around 50 blocks and takes a few minutes.
 Point `--rpc` at the other endpoint. Everything else is the same:
 
 ```
-./build/bin/replaycheck --rpc https://spicy-rpc.chiliz.com --upgrades
+./build/bin/replaycheck --rpc https://spicy-rpc.mine-chain.com --upgrades
 ```
 
 The tool reads the chain ID from the endpoint and picks the matching fork schedule from
@@ -185,13 +185,13 @@ go test ./consensus/parlia/... ./core/vm/... ./params/... ./internal/replay/...
 ## All the options
 
 ```
---rpc URL              endpoint to fetch history from (default https://rpc.chiliz.com)
+--rpc URL              endpoint to fetch history from (default https://rpc.mine-chain.com)
 --block N | N-M        block or inclusive range to check; repeatable
 --upgrades             check every system-contract runtime upgrade on the network
 --governance           check every executed governance proposal on the network
 --from N / --to N      limit the block range that --upgrades and --governance scan
 --chunk N              log-scan chunk size for those sweeps (default 4,000,000)
---genesis NAME         force chiliz, spicy or scoville instead of using the chain ID
+--genesis NAME         force mine-chain, spicy or scoville instead of using the chain ID
 --save-fixture DIR     write a replay fixture per transaction into DIR
 --remote-trace         also report the gas the endpoint itself charges
 -v                     print every transaction, not just the failing ones

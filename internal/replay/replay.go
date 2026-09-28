@@ -113,19 +113,19 @@ func (f *Fixture) Matches(r *Result) bool {
 // Delta is how much more (or less) gas this build charges than the chain did.
 func (f *Fixture) Delta(r *Result) int64 { return int64(r.GasUsed) - int64(f.ExpectedGasUsed) }
 
-// ChainConfig returns the fork schedule of one of the embedded Chiliz networks. Reading it
+// ChainConfig returns the fork schedule of one of the embedded Mine-Chain networks. Reading it
 // from the embedded genesis rather than restating it means a replay cannot drift away from
 // what the network actually runs.
 func ChainConfig(genesis string) (*params.ChainConfig, error) {
 	switch genesis {
-	case "chiliz", "mainnet":
-		return config.ChilizMainnetGenesisConfig.Config, nil
+	case "mine-chain", "mainnet":
+		return config.MineChainMainnetGenesisConfig.Config, nil
 	case "spicy":
 		return config.SpicyGenesisConfig.Config, nil
 	case "scoville":
 		return config.ScovilleGenesisConfig.Config, nil
 	default:
-		return nil, fmt.Errorf("unknown genesis %q, want chiliz, spicy or scoville", genesis)
+		return nil, fmt.Errorf("unknown genesis %q, want mine-chain, spicy or scoville", genesis)
 	}
 }
 
@@ -133,13 +133,13 @@ func ChainConfig(genesis string) (*params.ChainConfig, error) {
 func GenesisForChainID(chainID uint64) (string, error) {
 	switch chainID {
 	case 88888:
-		return "chiliz", nil
+		return "mine-chain", nil
 	case 88882:
 		return "spicy", nil
 	case 88880:
 		return "scoville", nil
 	default:
-		return "", fmt.Errorf("chain id %d is not a Chiliz network", chainID)
+		return "", fmt.Errorf("chain id %d is not a Mine-Chain network", chainID)
 	}
 }
 

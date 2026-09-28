@@ -136,7 +136,7 @@ const (
 	DefaultBaseFeeChangeDenominator = 8             // Bounds the amount the base fee can change between blocks.
 	DefaultElasticityMultiplier     = 2             // Bounds the maximum gas limit an EIP-1559 block may have.
 	InitialBaseFee                  = 1000000000    // Initial base fee for EIP-1559 blocks (upstream Ethereum default; used by non-Parlia chains).
-	InitialBaseFeeForBSC            = 2500000000000 // Initial base fee / base-fee floor for EIP-1559 blocks on Chiliz/BSC (Parlia) networks.
+	InitialBaseFeeForBSC            = 2500000000000 // Initial base fee / base-fee floor for EIP-1559 blocks on Mine-Chain/BSC (Parlia) networks.
 
 	MaxCodeSize     = 24576           // Maximum bytecode to permit for a contract
 	MaxInitCodeSize = 2 * MaxCodeSize // Maximum initcode to permit in a creation transaction and create instructions
@@ -187,7 +187,7 @@ const (
 	BlobTxFieldElementsPerBlob         = 4096         // Number of field elements stored in a single data blob
 	BlobTxBlobGasPerBlob               = 1 << 17      // Gas consumption of a single data blob (== blob byte size)
 	BlobTxMinBlobGasprice              = 1            // Minimum gas price for data blobs (upstream Ethereum default; used by non-Parlia chains).
-	BlobTxMinBlobGaspriceForBSC        = 150000000000 // Minimum gas price for data blobs on Chiliz/BSC (Parlia) networks.
+	BlobTxMinBlobGaspriceForBSC        = 150000000000 // Minimum gas price for data blobs on Mine-Chain/BSC (Parlia) networks.
 	BlobTxPointEvaluationPrecompileGas = 50000        // Gas price for the point evaluation precompile.
 	BlobTxMaxBlobs                     = 6
 	BlobBaseCost                       = 1 << 13 // Base execution gas cost for a blob.

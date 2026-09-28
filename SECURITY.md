@@ -4,7 +4,7 @@
 
 We take the security of our project seriously. If you discover a vulnerability, please do **not** open a public issue. Instead, report it to us confidentially via email. 
 
-**Email:** [security@chiliz.com](mailto:security@chiliz.com) 
+**Email:** [security@mine-chain.com](mailto:security@mine-chain.com) 
 
 Please include the following in your report: 
 

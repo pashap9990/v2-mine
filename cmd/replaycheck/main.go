@@ -20,7 +20,7 @@
 //	replaycheck --block 31000000-31000010            # a range
 //	replaycheck --upgrades                           # every runtime upgrade on the network
 //	replaycheck --governance                         # every executed governance proposal
-//	replaycheck --rpc https://spicy-rpc.chiliz.com --upgrades
+//	replaycheck --rpc https://spicy-rpc.mine-chain.com --upgrades
 //	replaycheck --block 31384697 --save-fixture internal/replay/testdata
 //
 // The endpoint needs the debug namespace and enough history to trace the blocks asked for.
@@ -121,7 +121,7 @@ type options struct {
 
 func main() {
 	var opts options
-	flag.StringVar(&opts.rpcURL, "rpc", "https://rpc.chiliz.com", "JSON-RPC endpoint to pull history from (needs the debug namespace)")
+	flag.StringVar(&opts.rpcURL, "rpc", "https://rpc.mine-chain.com", "JSON-RPC endpoint to pull history from (needs the debug namespace)")
 	flag.Var(&opts.blocks, "block", "block to check; a number or an inclusive N-M range (repeatable)")
 	flag.BoolVar(&opts.upgrades, "upgrades", false, "check every system-contract runtime upgrade on the network")
 	flag.BoolVar(&opts.governance, "governance", false, "check every executed governance proposal on the network")

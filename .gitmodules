@@ -8,4 +8,4 @@
 	shallow = true
 [submodule "genesis"]
 	path = genesis
-	url = git@github.com:chiliz-chain/v2-genesis-config.git
+	url = git@github.com:mine-chain/v2-genesis-config.git

@@ -16,7 +16,7 @@ name: BSC Upstream Sync
 #   secrets.ANTHROPIC_API_KEY   enables the conflict-resolution + release-impact
 #                               agent. When absent, conflicting tags are reported
 #                               for manual merge instead (clean merges still flow).
-#   secrets.SLACK_WEBHOOK_URL   incoming webhook for #bu-chiliz-core-squad.
+#   secrets.SLACK_WEBHOOK_URL   incoming webhook for #bu-mine-chain-core-squad.
 #   vars.BSC_SYNC_CLAUDE_MODEL  optional model override for the agent.
 
 on:
@@ -71,8 +71,8 @@ jobs:
 
       - name: Configure git identity
         run: |
-          git config user.name "chiliz-sync-bot"
-          git config user.email "bot@chiliz.com"
+          git config user.name "mine-chain-sync-bot"
+          git config user.email "bot@mine-chain.com"
 
       - name: Determine agent availability
         id: agent
@@ -178,7 +178,7 @@ jobs:
             bsc-sync-report.md
           if-no-files-found: ignore
 
-      - name: Notify Slack (#bu-chiliz-core-squad)
+      - name: Notify Slack (#bu-mine-chain-core-squad)
         if: always()
         continue-on-error: true
         env:

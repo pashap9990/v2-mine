@@ -58,7 +58,7 @@ func VerifyEIP1559Header(config *params.ChainConfig, parent, header *types.Heade
 // CalcBaseFee calculates the basefee of the header.
 func CalcBaseFee(config *params.ChainConfig, parent *types.Header) *big.Int {
 	// If the current block is the first EIP-1559 block, return the InitialBaseFee.
-	// Chiliz/BSC (Parlia) networks use a higher initial base fee than upstream.
+	// Mine-Chain/BSC (Parlia) networks use a higher initial base fee than upstream.
 	if !config.IsLondon(parent.Number) {
 		if config.Parlia != nil {
 			return new(big.Int).SetUint64(params.InitialBaseFeeForBSC)
@@ -96,7 +96,7 @@ func CalcBaseFee(config *params.ChainConfig, parent *types.Header) *big.Int {
 		num.Div(num, denom.SetUint64(parentGasTarget))
 		num.Div(num, denom.SetUint64(config.BaseFeeChangeDenominator()))
 
-		// Chiliz/BSC (Parlia) networks floor the base fee at InitialBaseFeeForBSC
+		// Mine-Chain/BSC (Parlia) networks floor the base fee at InitialBaseFeeForBSC
 		// as a tokenomics policy; upstream Ethereum (and the execution-spec / unit
 		// tests, which run on non-Parlia configs) floor at zero.
 		floor := common.Big0

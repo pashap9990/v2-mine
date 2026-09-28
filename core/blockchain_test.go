@@ -3270,7 +3270,7 @@ func testEIP2718TransitionWithConfig(t *testing.T, scheme string, config *params
 		// A sender who makes transactions, has some funds
 		key, _  = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
 		address = crypto.PubkeyToAddress(key.PublicKey)
-		// Fund generously: on Chiliz/BSC (Parlia) configs the base fee is
+		// Fund generously: on Mine-Chain/BSC (Parlia) configs the base fee is
 		// InitialBaseFeeForBSC (2500 gwei), so the tx below (GasPrice == baseFee)
 		// must be affordable.
 		funds = big.NewInt(1000000000000000000)
@@ -4187,9 +4187,9 @@ func TestParliaBlobFeeReward(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	// CHILIZ DIVERGENCE FROM BSC — keep this when reconciling with upstream pulls.
+	// MINE-CHAIN DIVERGENCE FROM BSC — keep this when reconciling with upstream pulls.
 	//
-	// Chiliz burns the EIP-1559 base fee: only the effective tip (gasPrice -
+	// Mine-Chain burns the EIP-1559 base fee: only the effective tip (gasPrice -
 	// baseFee) and the full blob fee are credited to the system address (see the
 	// Parlia branch in core/state_transition.go). Upstream BSC instead credits
 	// the system with the *full* gas fee including the base fee, so the upstream
@@ -4197,7 +4197,7 @@ func TestParliaBlobFeeReward(t *testing.T) {
 	//
 	// When a future BSC merge re-introduces the upstream computation, do NOT take
 	// it verbatim — the gas portion must stay tip-only (EffectiveGasPrice -
-	// baseFee) to match Chiliz's burned base fee. See COR-39.
+	// baseFee) to match Mine-Chain's burned base fee. See COR-39.
 	expect := new(big.Int)
 	for _, block := range bs {
 		baseFee := block.BaseFee()

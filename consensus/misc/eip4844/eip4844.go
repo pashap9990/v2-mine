@@ -32,7 +32,7 @@ type BlobConfig struct {
 	Target         int
 	Max            int
 	UpdateFraction uint64
-	// config is retained so blob-fee formulas can apply the Chiliz/BSC
+	// config is retained so blob-fee formulas can apply the Mine-Chain/BSC
 	// (Parlia) minimum blob gas price policy via MinBlobGasprice.
 	config *params.ChainConfig
 }
@@ -193,7 +193,7 @@ func CalcBlobFee(config *params.ChainConfig, header *types.Header) *big.Int {
 }
 
 // MinBlobGasprice returns the minimum blob gas price for the given chain.
-// Chiliz/BSC (Parlia) networks enforce a high minimum as a tokenomics policy;
+// Mine-Chain/BSC (Parlia) networks enforce a high minimum as a tokenomics policy;
 // upstream Ethereum (and the execution-spec / unit tests, which run on
 // non-Parlia configs) use the EIP-4844 minimum of 1 wei.
 func MinBlobGasprice(config *params.ChainConfig) *big.Int {

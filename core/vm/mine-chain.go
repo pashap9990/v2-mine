@@ -20,7 +20,7 @@ func (evm *EVM) deployerProxyHooksActive() bool {
 // warmDeployerProxyOnHookDispatch adds the DeployerProxy to the transaction's
 // EIP-2929 access list when addr dispatches to an EVM hook (COR-193).
 //
-// Up to client 2.6.0 applyChilizInvocationEvmHook ran at the very top of
+// Up to client 2.6.0 applyMineChainInvocationEvmHook ran at the very top of
 // EVM.Call, for every callee including the hook addresses themselves. Its inner
 // call to the DeployerProxy left that address warm for the rest of the calling
 // frame. Client 2.7.3 moved the invocation hook behind the precompile/hook
@@ -42,7 +42,7 @@ func (evm *EVM) warmDeployerProxyOnHookDispatch(addr common.Address) {
 	evm.StateDB.AddAddressToAccessList(systemcontract.DeployerProxyContractAddress)
 }
 
-func applyChilizInvocationEvmHook(evm *EVM, addr common.Address, gas uint64) (leftOverGas uint64, err error) {
+func applyMineChainInvocationEvmHook(evm *EVM, addr common.Address, gas uint64) (leftOverGas uint64, err error) {
 	if systemcontract.IsSystemContract(addr) {
 		return gas, nil
 	}
@@ -62,7 +62,7 @@ func applyChilizInvocationEvmHook(evm *EVM, addr common.Address, gas uint64) (le
 	return gas, nil
 }
 
-func applyChilizDeploymentEvmHook(evm *EVM, caller common.Address, addr common.Address, gas uint64) (leftOverGas uint64, err error) {
+func applyMineChainDeploymentEvmHook(evm *EVM, caller common.Address, addr common.Address, gas uint64) (leftOverGas uint64, err error) {
 	if systemcontract.IsSystemContract(addr) {
 		return gas, nil
 	}

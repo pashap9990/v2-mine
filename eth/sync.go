@@ -162,7 +162,7 @@ func (cs *chainSyncer) nextSyncOp() *chainSyncOp {
 	}
 	mode, ourTD := cs.modeAndLocalHead()
 	op := peerToSyncOp(mode, peer)
-	// Chiliz/BSC set defaultMinSyncPeers to 1 (upstream uses 5), so this
+	// Mine-Chain/BSC set defaultMinSyncPeers to 1 (upstream uses 5), so this
 	// background syncer runs with a single peer and can observe a transient
 	// nil TD — either ours (GetTd for the snap block before its TD is
 	// persisted mid snap-sync) or the peer's (registered before its head is

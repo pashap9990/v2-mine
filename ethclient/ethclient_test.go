@@ -150,11 +150,11 @@ var genesis = &core.Genesis{
 	},
 	ExtraData: []byte("test genesis"),
 	Timestamp: 9000,
-	// CHILIZ: this is a non-Parlia (Ethash) test chain, so it must use upstream
+	// MINE-CHAIN: this is a non-Parlia (Ethash) test chain, so it must use upstream
 	// economics — NOT InitialBaseFeeForBSC. Base fee 0 keeps it 0 across these
 	// under-target blocks, so each tx's tip equals its gas price exactly, which
 	// the SuggestGasTipCap / FeeHistory.Reward / balance assertions below rely on.
-	// Do not "re-Chiliz-ify" this to InitialBaseFeeForBSC on a future BSC pull.
+	// Do not "re-Mine-Chain-ify" this to InitialBaseFeeForBSC on a future BSC pull.
 	BaseFee: big.NewInt(0),
 }
 
@@ -574,7 +574,7 @@ func testStatusFunctions(t *testing.T, client *rpc.Client) {
 				testGasPrice,
 			},
 		},
-		// CHILIZ: base fee is 0 on this non-Parlia test chain (see genesis above);
+		// MINE-CHAIN: base fee is 0 on this non-Parlia test chain (see genesis above);
 		// not InitialBaseFeeForBSC. Keep 0 when reconciling with upstream BSC.
 		BaseFee: []*big.Int{
 			big.NewInt(0),

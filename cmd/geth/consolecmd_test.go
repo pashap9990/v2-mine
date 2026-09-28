@@ -38,7 +38,7 @@ const (
 // memory and disk IO. If the args don't set --datadir, the
 // child g gets a temporary data directory.
 func runMinimalGeth(t *testing.T, args ...string) *testgeth {
-	// --spicy (Chiliz testnet) for a pre-configured Parlia genesis
+	// --spicy (Mine-Chain testnet) for a pre-configured Parlia genesis
 	// --syncmode=full to avoid allocating fast sync bloom
 	allArgs := []string{"--spicy", "--syncmode=full", "--port", "0",
 		"--nat", "none", "--nodiscover", "--maxpeers", "0", "--cache", "64",

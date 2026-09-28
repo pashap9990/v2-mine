@@ -360,8 +360,8 @@ func prepare(ctx *cli.Context) {
 	case ctx.IsSet(utils.ChapelFlag.Name):
 		log.Info("Starting BSC on Chapel testnet...")
 
-	case ctx.IsSet(utils.ChilizSpicyFlag.Name):
-		log.Info("Starting Chiliz Chain on Spicy testnet...")
+	case ctx.IsSet(utils.MineChainSpicyFlag.Name):
+		log.Info("Starting Mine-Chain on Spicy testnet...")
 
 	case !ctx.IsSet(utils.NetworkIdFlag.Name):
 		log.Info("Starting Geth on BSC mainnet...")

@@ -728,9 +728,9 @@ var (
 
 func TestParlia_applyTransactionTracing(t *testing.T) {
 	// Skipped intentionally: this test packs the Feynman-only system method
-	// distributeFinalityReward, but Chiliz does not (and will not) enable the
+	// distributeFinalityReward, but Mine-Chain does not (and will not) enable the
 	// Feynman fork, so that method is absent from the validator-set ABI. See COR-39.
-	t.Skip("Chiliz does not enable the Feynman fork; distributeFinalityReward is not available (COR-39)")
+	t.Skip("Mine-Chain does not enable the Feynman fork; distributeFinalityReward is not available (COR-39)")
 	frdir := t.TempDir()
 	db, err := rawdb.NewDatabaseWithFreezer(rawdb.NewMemoryDatabase(), frdir, "", false)
 	if err != nil {

@@ -270,7 +270,7 @@ func (evm *EVM) Call(caller common.Address, addr common.Address, input []byte, g
 	}
 	snapshot := evm.StateDB.Snapshot()
 	p, isPrecompile := evm.precompileOrHook(addr, caller)
-	evm.warmDeployerProxyOnHookDispatch(addr) // COR-193, see core/vm/chiliz.go
+	evm.warmDeployerProxyOnHookDispatch(addr) // COR-193, see core/vm/mine-chain.go
 
 	if !evm.StateDB.Exist(addr) {
 		if !isPrecompile && evm.chainRules.IsEIP4762 && !isSystemCall(caller) {
@@ -306,7 +306,7 @@ func (evm *EVM) Call(caller common.Address, addr common.Address, input []byte, g
 			ret, err = nil, nil // gas is unchanged
 		} else {
 			if evm.deployerProxyHooksActive() {
-				gas, err = applyChilizInvocationEvmHook(evm, addr, gas)
+				gas, err = applyMineChainInvocationEvmHook(evm, addr, gas)
 				if err != nil {
 					return nil, gas, err
 				}
@@ -615,7 +615,7 @@ func (evm *EVM) create(caller common.Address, code []byte, gas uint64, value *ui
 	// Make sure it's allowed to deploy smart contracts
 	if !evm.chainRules.HasDeploymentHookFix && evm.deployerProxyHooksActive() {
 		var err error
-		gas, err = applyChilizDeploymentEvmHook(evm, caller, address, gas)
+		gas, err = applyMineChainDeploymentEvmHook(evm, caller, address, gas)
 		if err != nil {
 			return nil, common.Address{}, gas, err
 		}
@@ -666,7 +666,7 @@ func (evm *EVM) create(caller common.Address, code []byte, gas uint64, value *ui
 	// Make sure it's allowed to deploy smart contracts
 	if evm.chainRules.HasDeploymentHookFix && evm.deployerProxyHooksActive() {
 		var err error
-		gas, err = applyChilizDeploymentEvmHook(evm, caller, address, gas)
+		gas, err = applyMineChainDeploymentEvmHook(evm, caller, address, gas)
 		if err != nil {
 			return nil, common.Address{}, gas, err
 		}

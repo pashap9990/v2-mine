@@ -34,9 +34,9 @@ var (
 	ChapelGenesisHash = common.HexToHash("0x6d3c66c5357ec91d5c43af47e234a939b22557cbb552dc45bebbceeed90fbe34")
 	RialtoGenesisHash = common.HexToHash("0xaabe549bfa85c84f7aee9da7010b97453ad686f2c2d8ce00503d1a00c72cad54")
 
-	ChilizScovilleGenesisHash = common.HexToHash("0xa148378fbfd7562cd43c8622d20ad056b735fdc0f968f56d0033294c33ededf2")
-	ChilizSpicyGenesisHash    = common.HexToHash("0x9e0e07ae4ee9b0ef66a4206656677020306259d0b0b845ad3bb6b09fb91485ff")
-	ChilizMainnetGenesisHash  = common.HexToHash("")
+	MineChainScovilleGenesisHash = common.HexToHash("0xa148378fbfd7562cd43c8622d20ad056b735fdc0f968f56d0033294c33ededf2")
+	MineChainSpicyGenesisHash    = common.HexToHash("0x9e0e07ae4ee9b0ef66a4206656677020306259d0b0b845ad3bb6b09fb91485ff")
+	MineChainMainnetGenesisHash  = common.HexToHash("")
 )
 
 func newUint64(val uint64) *uint64 { return &val }
@@ -709,7 +709,7 @@ type ChainConfig struct {
 	GrayGlacierBlock    *big.Int `json:"grayGlacierBlock,omitempty"`    // Eip-5133 (bomb delay) switch block (nil = no fork, 0 = already activated)
 	MergeNetsplitBlock  *big.Int `json:"mergeNetsplitBlock,omitempty"`  // Virtual fork after The Merge to use as a network splitter
 
-	// Chiliz V2 forks
+	// Mine-Chain V2 forks
 	RuntimeUpgradeBlock     *big.Int `json:"runtimeUpgradeBlock,omitempty"`
 	DeployOriginBlock       *big.Int `json:"deployOriginBlock,omitempty"`
 	DeploymentHookFixBlock  *big.Int `json:"deploymentHookFixBlock,omitempty"`
